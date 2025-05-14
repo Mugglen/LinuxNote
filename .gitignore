@@ -1,0 +1,30 @@
+# Linux内核模块编译产生的临时文件
+
+# 编译的文件
+*.o
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.symvers
+*.order
+.tmp_versions/
+modules.order
+Module.symvers
+
+# 命令文件
+.*.cmd
+.*.tmp
+
+# 编辑器生成的文件
+.vscode/
+*~
+*.swp
+*.swo
+
+# Windows特定文件
+Thumbs.db
+desktop.ini
+
+# Mac特定文件
+.DS_Store 
