@@ -106,9 +106,32 @@ static struct attribute *my_attrs[] = {
     NULL,  // 以NULL结尾
 };
 
-// 属性组，方便管理多个属性
+/**
+ * 属性组，方便管理多个属性
+ * 可以用以下几种方式定义:
+ *
+ * 1. 基本方式 (当前使用):
+ * static struct attribute_group my_attr_group = {
+ *     .attrs = my_attrs,
+ * };
+ *
+ * 2. 带组名的方式:
+ * static struct attribute_group my_attr_group = {
+ *     .name = "my_group",  // 会在/sys/my_attr_auto/my_group/下创建属性文件
+ *     .attrs = my_attrs,
+ * };
+ *
+ * 3. 带自定义权限的方式:
+ * static struct attribute_group my_attr_group = {
+ *     .name = "my_group",
+ *     .attrs = my_attrs,
+ *     .bin_attrs = NULL,   // 可以包含二进制属性
+ *     .is_visible = NULL,  // 可以设置动态显示/隐藏属性的回调函数
+ * };
+ */
 static struct attribute_group my_attr_group = {
     .attrs = my_attrs,
+    // .name = "my_group",  // 取消注释此行可在子目录下创建属性
 };
 
 static int __init my_attr_auto_init(void)
